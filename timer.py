@@ -19,7 +19,8 @@ for jscript in jscripts:
 for cppscript in cppscripts:
     subprocess.run(["g++", "-o", cppscript + ".exe", cppscript + ".cpp"])
 
-subprocess.run(["go", "mod", "init", "example/array"])
+subprocess.run(["go", "mod", "init", "example/array"], cwd="arraygo")
+subprocess.run(["go", "build", "-o", "../array.exe"], cwd="arraygo")
 
 
 def runandtime(cmd):
@@ -42,8 +43,7 @@ for jscript in jscripts:
     times.append((jscript,) + runandtime("java " + jscript))
 for cppscript in cppscripts:
     times.append((cppscript,) + runandtime("./" + cppscript + ".exe"))
-for goscript in goscripts:
-    times.append((goscript,) + runandtime("go run " + goscript + ".go"))
+times.append(("arraygo",) + runandtime("./array.exe"))
 
 ranking = "\n".join((s + '\t' + f'{m:.6f}' + u"\u00B1" + f'{d:.6f}')
                     for s, m, d in sorted(times, key=lambda e: e[1]))
