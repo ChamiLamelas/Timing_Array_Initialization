@@ -4,7 +4,7 @@
 
 ## Description
 
-Here I compare the runtime of initializing a 30,000,000 integer array over 5 trials or array-like data structure in the following languages: 
+Here I compare the runtime of initializing a 30,000,000 integer array or array-like data structure over 5 trials in the following languages: 
 
 * C
 * C++
